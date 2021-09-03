@@ -1,6 +1,6 @@
 export function getAppointmentsForDay(state, day) {
   let apptForDay;
-  if (state.days.length === 0) {
+  if (!state.days || state.days.length === 0) {
     return [];
   }
   state.days.forEach((item) => {
