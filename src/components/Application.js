@@ -35,6 +35,19 @@ export default function Application(props) {
     });
   }, []);
 
+  function bookInterview(id, interview) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview },
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment,
+    };
+
+    setState({ ...state, appointments });
+  }
+
   const dailyAppointments = getAppointmentsForDay(state, state.day);
 
   const appointmentList = dailyAppointments.map((appointment) => {
@@ -42,10 +55,12 @@ export default function Application(props) {
     const interview = getInterview(state, appointment.interview);
     return (
       <Appointment
+        id={appointment.id}
         key={appointment.id}
         time={appointment.time}
         interview={interview}
         interviewers={interviewers}
+        bookInterview={bookInterview}
       />
     );
   });
