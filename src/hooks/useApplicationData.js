@@ -37,7 +37,7 @@ export function useApplicationData() {
     };
 
     return axios.put(`/api/appointments/${id}`, appointment).then((res) => {
-      const days = updateSpots(state.day, state.days, appointments);
+      const days = updateSpots(state, appointments);
 
       setState({
         ...state,
@@ -53,28 +53,33 @@ export function useApplicationData() {
     return axios
       .delete(`/api/appointments/${id}`)
       .then(() => {
-        const days = updateSpots(state.day, state.days, appointments);
+        const days = updateSpots(state, appointments);
         setState({ ...state, appointments, days });
       })
       .catch((err) => console.log(err));
   }
 
   // return a new days array with updated spot numbers
-  function updateSpots(dayName, days, appointments) {
-    return days.map((day) => {
-      if (day.name === dayName) {
-        let spot = 0;
+  function updateSpots(state, appointments) {
+    const dayIndex = state.days.findIndex((day) => day.name === state.day);
+    const newDay = state.days[dayIndex];
 
-        day.appointments.forEach((appointment) => {
-          if (appointments[appointment].interview === null) {
-            spot++;
-          }
-        });
-        day.spots = spot;
+    // count spots
+    let spot = 0;
+    for (const appointmentID of newDay.appointments) {
+      // only counts appointments with null interview
+      if (!appointments[appointmentID].interview) {
+        spot++;
       }
+    }
 
-      return day;
-    });
+    // updates spot count and creating a new days
+    const days = state.days.map((day) =>
+      day.name === newDay.name ? { ...newDay, spots: spot } : day
+    );
+
+    return days;
   }
+
   return { state, setDay, bookInterview, cancelInterview };
 }
