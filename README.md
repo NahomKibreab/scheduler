@@ -18,16 +18,16 @@ The app includes the following functionality:
 
 ## Screenshots
 
-!["Screenshot of Interview Scheduler Home Page"]('images/home-page.png')
+!["Screenshot of Interview Scheduler Home Page"]('/images/home-page.png')
 ###### Interview Scheduler Home Page 
 
-!["Screenshot of Interview Scheduler Booking New Interview"]('images/book-interview.png')
+!["Screenshot of Interview Scheduler Booking New Interview"]('/images/book-interview.png')
 ###### Booking New Interview 
 
-!["Screenshot of Interview Scheduler Editing Booked Interview"]('images/booked-interview.png')
+!["Screenshot of Interview Scheduler Editing Booked Interview"]('/images/booked-interview.png')
 ###### Editing Booked Interview 
 
-!["Screenshot of Interview Scheduler Cancel Interview"]('images/cancel-interview.png')
+!["Screenshot of Interview Scheduler Cancel Interview"]('/images/cancel-interview.png')
 ###### Cancel Interview 
 
 
